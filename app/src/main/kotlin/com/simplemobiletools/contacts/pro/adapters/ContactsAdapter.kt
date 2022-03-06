@@ -63,15 +63,20 @@ class ContactsAdapter(
 
     override fun prepareActionMode(menu: Menu) {
         menu.apply {
-            findItem(R.id.cab_edit).isVisible = isOneItemSelected()
-            findItem(R.id.cab_remove).isVisible = location == LOCATION_FAVORITES_TAB || location == LOCATION_GROUP_CONTACTS
+            if (!config.lockEditing) {
+                findItem(R.id.cab_edit).isVisible = isOneItemSelected()
+                findItem(R.id.cab_delete).isVisible = location == LOCATION_CONTACTS_TAB || location == LOCATION_GROUP_CONTACTS
+            }
+            else {
+                findItem(R.id.cab_edit).isVisible = false
+                findItem(R.id.cab_delete).isVisible = false
+            }
             findItem(R.id.cab_add_to_favorites).isVisible = location == LOCATION_CONTACTS_TAB
             findItem(R.id.cab_add_to_group).isVisible = location == LOCATION_CONTACTS_TAB || location == LOCATION_FAVORITES_TAB
             findItem(R.id.cab_send_sms_to_contacts).isVisible =
                 location == LOCATION_CONTACTS_TAB || location == LOCATION_FAVORITES_TAB || location == LOCATION_GROUP_CONTACTS
             findItem(R.id.cab_send_email_to_contacts).isVisible =
                 location == LOCATION_CONTACTS_TAB || location == LOCATION_FAVORITES_TAB || location == LOCATION_GROUP_CONTACTS
-            findItem(R.id.cab_delete).isVisible = location == LOCATION_CONTACTS_TAB || location == LOCATION_GROUP_CONTACTS
             findItem(R.id.cab_create_shortcut).isVisible =
                 isOreoPlus() && isOneItemSelected() && (location == LOCATION_FAVORITES_TAB || location == LOCATION_CONTACTS_TAB)
 

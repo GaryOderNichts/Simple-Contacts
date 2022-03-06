@@ -37,6 +37,7 @@ class SettingsActivity : SimpleActivity() {
         setupShowCallConfirmation()
         setupShowDialpadButton()
         setupShowPrivateContacts()
+        setupLockEditing();
         setupOnContactClick()
         setupDefaultTab()
         updateTextColors(settings_holder)
@@ -182,6 +183,14 @@ class SettingsActivity : SimpleActivity() {
         settings_show_private_contacts_holder.setOnClickListener {
             settings_show_private_contacts.toggle()
             config.showPrivateContacts = settings_show_private_contacts.isChecked
+        }
+    }
+
+    private fun setupLockEditing() {
+        settings_lock_editing.isChecked = config.lockEditing
+        settings_lock_editing_holder.setOnClickListener {
+            settings_lock_editing.toggle()
+            config.lockEditing = settings_lock_editing.isChecked
         }
     }
 

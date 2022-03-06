@@ -105,6 +105,10 @@ class ViewContactActivity : ContactActivity() {
                 true
             }
 
+            if (config.lockEditing) {
+                findItem(R.id.edit).setVisible(false)
+            }
+
             findItem(R.id.open_with).setOnMenuItemClickListener {
                 openWith()
                 true
@@ -113,6 +117,10 @@ class ViewContactActivity : ContactActivity() {
             findItem(R.id.delete).setOnMenuItemClickListener {
                 deleteContactFromAllSources()
                 true
+            }
+
+            if (config.lockEditing) {
+                findItem(R.id.delete).setVisible(false)
             }
 
             findItem(R.id.manage_visible_fields).setOnMenuItemClickListener {

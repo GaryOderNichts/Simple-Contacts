@@ -60,4 +60,8 @@ class Config(context: Context) : BaseConfig(context) {
     var showPrivateContacts: Boolean
         get() = prefs.getBoolean(SHOW_PRIVATE_CONTACTS, true)
         set(showPrivateContacts) = prefs.edit().putBoolean(SHOW_PRIVATE_CONTACTS, showPrivateContacts).apply()
+
+    var lockEditing: Boolean
+        get() = prefs.getBoolean(LOCK_EDITING, false)
+        set(lockEditing) = prefs.edit().putBoolean(LOCK_EDITING, lockEditing).apply()
 }

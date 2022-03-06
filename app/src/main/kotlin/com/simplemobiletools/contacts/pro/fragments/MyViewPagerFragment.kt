@@ -56,6 +56,13 @@ abstract class MyViewPagerFragment(context: Context, attributeSet: AttributeSet)
                 }
             }
 
+            if (config.lockEditing && this is ContactsFragment) {
+                fragment_fab?.hide()
+            }
+            else {
+                fragment_fab?.show()
+            }
+
             fragment_placeholder_2?.setOnClickListener {
                 placeholderClicked()
             }
